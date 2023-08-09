@@ -1,4 +1,4 @@
-# Shopping Cart
+# Mock Cart
 
 A mock shopping cart that uses the [Fake Store API](https://fakestoreapi.com/).
 
