@@ -3,7 +3,9 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      {/* <Navbar /> */}
+      <div className="font-extralight text-6xl mb-1 mt-10">Welcome to...</div>
+      <div className="italic font-black text-6xl">The Shoppe</div>
     </>
   );
 }
