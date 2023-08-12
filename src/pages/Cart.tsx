@@ -22,7 +22,7 @@ const Cart = () => {
           </li>
         ))}
       </ul>
-      <div className="sticky top-10 flex flex-col justify-start items-center h-fit mt-10 mr-10 ml-auto bg-gray-100 p-8 pb-12 rounded-lg shadow-lg w-3/4">
+      <div className="font-sans sticky top-10 flex flex-col justify-start items-center h-fit mt-10 mr-10 ml-auto bg-gray-100 p-8 pb-12 rounded-lg shadow-lg w-3/4">
         <div className="text-2xl font-bold text-gray-700 mb-4">
           Total: ${cart.reduce((acc, curr) => acc + curr.price, 0).toFixed(2)}
         </div>

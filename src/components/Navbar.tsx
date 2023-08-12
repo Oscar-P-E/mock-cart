@@ -5,7 +5,7 @@ const Navbar = () => {
   const { cartCount } = useCart();
 
   return (
-    <div className="sticky top-0 bg-white flex justify-between px-4 items-center text-xl font-bold pb-4 pt-2 border-b">
+    <div className="font-sans sticky top-0 bg-white flex justify-between px-4 items-center text-xl font-bold pb-4 pt-2 border-b">
       <ul className="flex flex-row gap-8 py-1">
         <li>
           <Link to="/">Home</Link>
