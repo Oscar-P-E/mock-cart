@@ -1,8 +1,17 @@
 import { Link } from "react-router-dom";
 
+const cart = () => {
+  const cart = localStorage.getItem("cart");
+  if (cart) {
+    return JSON.parse(cart);
+  } else {
+    return [];
+  }
+};
+
 const Navbar = () => {
   return (
-    <div className="flex justify-between px-4 items-center text-xl font-bold ">
+    <div className="flex justify-between px-4 items-center text-xl font-bold pb-4 border-b">
       <ul className="flex flex-row gap-8 py-1">
         <li>
           <Link to="/">Home</Link>
@@ -12,7 +21,9 @@ const Navbar = () => {
         </li>
       </ul>
       <div>
-        <Link to="/pages/cart">Cart</Link>
+        <Link to="/pages/cart">
+          🛒 Cart{cart.length > 0 ? ` ${cart.length}` : ""}
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
-import { Product } from "../types";
+import { Product } from "../data/types";
 import { useState } from "react";
+import AddToCartBtn from "./AddToCartBtn";
+import RemoveFromCartBtn from "./RemFromCartBtn";
 
 const ProductCard = ({
   product,
@@ -54,15 +56,7 @@ const ProductCard = ({
             max={99}
           />
         </div>
-        {context === "shop" ? (
-          <button className="mx-4 product-card__button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-            Add to Cart
-          </button>
-        ) : (
-          <button className="product-card__button bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-            Remove from Cart
-          </button>
-        )}
+        {context === "shop" ? <AddToCartBtn /> : <RemoveFromCartBtn />}
       </div>
     </div>
   );

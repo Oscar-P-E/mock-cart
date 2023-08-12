@@ -1,24 +1,29 @@
 import { useState, useEffect } from "react";
-import { Products } from "../types";
+import { Products } from "../data/types";
+import { fetchCart } from "../data/data";
 
 import ProductCard from "../components/ProductCard";
 
 const Cart = () => {
-  const [products, setProducts] = useState<Products | null>(null);
+  // const [products, setProducts] = useState<Products | []>([]);
+  const [cart, setCart] = useState<Products | []>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => {
-        if (res.status >= 400) {
-          throw new Error("Bad response from server");
-        }
-        return res.json();
-      })
-      .then((products: Products) => setProducts(products))
-      .catch((err) => setError(err))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const data = await fetchCart();
+        setCart(data);
+      } catch (error) {
+        if (error instanceof Error) setError(error);
+        else setError(new Error("An unknown error occured"));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   if (error) return <div>Error occured</div>;
@@ -27,7 +32,7 @@ const Cart = () => {
   return (
     <div className="">
       <ul className="grid grid-cols-2">
-        {products?.map((product) => (
+        {cart?.map((product) => (
           <li key={product.id}>
             <ProductCard product={product} context="cart" />
           </li>
