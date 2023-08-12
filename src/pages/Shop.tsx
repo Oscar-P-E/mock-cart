@@ -37,10 +37,14 @@ const Shop = () => {
 
   return (
     <div className="">
-      <ul className="grid grid-cols-2">
+      <ul className="grid grid-cols-1 md:grid-cols-2">
         {shopItems?.map((product) => (
           <li key={product.id}>
-            <ProductCard product={product} context="shop" inCart={cart.some((item) => item.id === product.id)} />
+            <ProductCard
+              product={product}
+              context="shop"
+              inCart={cart.some((item) => item.id === product.id)}
+            />
           </li>
         ))}
       </ul>
