@@ -6,9 +6,11 @@ import RemoveFromCartBtn from "./RemFromCartBtn";
 const ProductCard = ({
   product,
   context,
+  inCart = false,
 }: {
   product: Product;
   context: "shop" | "cart";
+  inCart?: boolean;
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const chars = 300;
@@ -23,7 +25,13 @@ const ProductCard = ({
       : product.description;
 
   return (
-    <div className="product-card m-4 p-4 grid grid-cols-2 items-center">
+    <div
+      className={`product-card m-4 p-4 grid grid-cols-2 items-center ${
+        inCart ? "in-cart" : ""
+      }`}
+    >
+      {" "}
+      {/* Add conditional class */}
       <div className="product-card__image">
         <img
           className="object-contain w-52 mx-auto m-4"
@@ -31,7 +39,6 @@ const ProductCard = ({
           alt={`${product.title} image`}
         />
       </div>
-
       <div className="product-card__info flex flex-col gap-4 mb-auto">
         <div className="product-card__name text-lg font-bold">
           {product.title}
@@ -45,7 +52,6 @@ const ProductCard = ({
           )}
         </div>
         <div className="product-card__price font-mono">{`$ ${product.price}`}</div>
-
         <div className="product-card__buying">
           <span className="mr-2">Quantity:</span>
           <input
@@ -56,7 +62,14 @@ const ProductCard = ({
             max={99}
           />
         </div>
-        {context === "shop" ? <AddToCartBtn /> : <RemoveFromCartBtn />}
+        {context === "shop" ? (
+          <AddToCartBtn id={product.id} />
+        ) : (
+          <RemoveFromCartBtn id={product.id} />
+        )}
+        <div className="product-card__status text-yellow-500 italic h-5">
+          {inCart && "Added to Cart"}
+        </div>
       </div>
     </div>
   );
